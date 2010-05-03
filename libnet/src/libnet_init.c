@@ -48,7 +48,7 @@ libnet_init(int injection_type, const char *device, char *err_buf)
     if ((injection_type != LIBNET_NONE) && getuid() && geteuid())
     {
         snprintf(err_buf, LIBNET_ERRBUF_SIZE,
-                "%s(): UID or EUID of 0 required\n", __func__);
+                "%s(): UID or EUID of 0 required", __func__);
         goto bad;
     }
 #else
@@ -57,7 +57,7 @@ libnet_init(int injection_type, const char *device, char *err_buf)
     if ((WSAStartup(0x0202, &wsaData)) != 0)
     {
         snprintf(err_buf, LIBNET_ERRBUF_SIZE, 
-                "%s(): unable to initialize winsock 2\n", __func__);
+                "%s(): unable to initialize winsock 2", __func__);
         goto bad;
     }
 #endif
@@ -65,7 +65,7 @@ libnet_init(int injection_type, const char *device, char *err_buf)
     l = (libnet_t *)malloc(sizeof (libnet_t));
     if (l == NULL)
     {
-        snprintf(err_buf, LIBNET_ERRBUF_SIZE, "%s(): malloc(): %s\n", __func__,
+        snprintf(err_buf, LIBNET_ERRBUF_SIZE, "%s(): malloc(): %s", __func__,
                 strerror(errno));
         goto bad;
     }
@@ -115,7 +115,7 @@ libnet_init(int injection_type, const char *device, char *err_buf)
             break;
         default:
             snprintf(err_buf, LIBNET_ERRBUF_SIZE,
-                    "%s(): unsupported injection type\n", __func__);
+                    "%s(): unsupported injection type", __func__);
             goto bad;
             break;
     }
